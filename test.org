@@ -1,0 +1,85 @@
+* Org Mode Python
+
+Obviously ever thing is better in Emacs. With a bit of setup, [[https://github.com/gregsexton/ob-ipython][found here]], it is
+possible to have plain text, org style formatting and, evaluated code, and images
+at the tips of your finger.
+
+** Benefits:
+- Org-mode is highly extensible
+- Auto complete, pep8 and other options are available
+- Git integration is far easier
+
+
+** Limitations
+- Messy interactive graphs
+- Hard to set up
+- Vim users look at you weird
+
+** Examples:
+
+#+BEGIN_SRC ipython :session mysession :results raw drawer
+  import matplotlib.pyplot as plt
+  import numpy as np
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+# Out[25]:
+:END:
+
+#+BEGIN_SRC ipython :session mysession :exports both :results raw drawer
+  %matplotlib inline
+  plt.hist(np.random.randn(20000), bins=200);
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+# Out[26]:
+[[file:./obipy-resources/0ocAKi.png]]
+:END:
+
+It is trivial to mix code and analysis.
+
+#+BEGIN_SRC ipython :session mysession :exports both :results raw drawer
+  def foo(x):
+      return x + 9
+
+  [foo(x) + 7 for x in range(7)]
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+# Out[27]:
+: [16, 17, 18, 19, 20, 21, 22]
+:END:
+
+
+
+*** Issues:
+Care must be taken to name code chunks
+
+#+begin_src python :session
+ try:
+    foo(1)
+ except :  print("Did not work")
+#+end_src
+
+#+RESULTS:
+
+
+
+This one is named correctly.
+
+#+BEGIN_SRC ipython :session mysession :exports both :results raw drawer
+ foo(4)
+ print("did work")
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+# Out[6]:
+: 13
+:END:
+
+
+My current setup after getting a new laptop is subpar, still check it out.
